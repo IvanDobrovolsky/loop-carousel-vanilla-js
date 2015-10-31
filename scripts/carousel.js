@@ -1,5 +1,7 @@
 (function () {
+    "use strict";
 
+    //Function which returns next DOM node(if last -> returns first)
     function getNext(slide, slides){
         var nextSlide, n = slides.length;
 
@@ -15,6 +17,8 @@
         return nextSlide;
     }
 
+
+    //Function which returns previous DOM node(if first -> returns last)
     function getPrevious(slide, slides){
         var previousSlide, n = slides.length;
 
@@ -30,6 +34,7 @@
         return previousSlide;
     }
 
+    //Animating function
     function animate(carousel){
         carousel.classList.remove('is-set');
         setTimeout(function () {
@@ -37,6 +42,7 @@
         }, 50);
     }
 
+    //Reordering function
     function reorder(slides, newSlide){
         newSlide.classList.add('is-running');
         newSlide.style.order = 1;
@@ -47,13 +53,13 @@
         }
     }
 
+    //Function which implements switches slides
     function switchSlide(direction){
 
         var slides = Array.prototype.slice.call(document.getElementsByClassName('slide')),
             slidesContainer = document.querySelector('.slides'),
             currentReference = document.querySelector('.is-running'),
             newSlide;
-
 
         currentReference.classList.remove('is-running');
 
@@ -67,10 +73,12 @@
 
         reorder(slides, newSlide);
         animate(slidesContainer);
+
     }
 
 
 
+    //Events handling
     document.querySelector('.prev').addEventListener('click', function () {
         switchSlide('left');
     });
@@ -78,5 +86,14 @@
     document.querySelector('.next').addEventListener('click', function () {
         switchSlide('right');
     });
+
+
+    //Implementation of a delay feature
+
+    var delay = 5000; //milliseconds
+
+    setInterval(function () {
+        switchSlide('right')
+    }, delay);
 
 }());
