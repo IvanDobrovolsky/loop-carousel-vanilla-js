@@ -36,15 +36,15 @@
 
     //Animating function
     function animate(carousel){
-        carousel.classList.remove('is-set');
+        carousel.classList.remove('transitioned');
         setTimeout(function () {
-            carousel.classList.add('is-set');
+            carousel.classList.add('transitioned');
         }, 50);
     }
 
     //Reordering function
     function reorder(slides, newSlide){
-        newSlide.classList.add('is-running');
+        newSlide.classList.add('marker');
         newSlide.style.order = 1;
 
         for(var i = 1; i < slides.length; i++){
@@ -58,25 +58,23 @@
 
         var slides = Array.prototype.slice.call(document.getElementsByClassName('slide')),
             slidesContainer = document.querySelector('.slides'),
-            currentReference = document.querySelector('.is-running'),
+            currentReference = document.querySelector('.marker'),
             newSlide;
 
-        currentReference.classList.remove('is-running');
+        currentReference.classList.remove('reversed');
 
         if(direction === 'right'){
             newSlide = getNext(currentReference, slides);
-            slidesContainer.classList.remove('is-reversing');
+            slidesContainer.classList.remove('reversed');
         }else if (direction === 'left'){
             newSlide = getPrevious(currentReference, slides);
-            slidesContainer.classList.add('is-reversing');
+            slidesContainer.classList.add('reversed');
         }
 
         reorder(slides, newSlide);
         animate(slidesContainer);
 
     }
-
-
 
     //Events handling
     document.querySelector('.prev').addEventListener('click', function () {
@@ -89,7 +87,6 @@
 
 
     //Implementation of a delay feature
-
     var delay = 5000; //milliseconds
 
     setInterval(function () {

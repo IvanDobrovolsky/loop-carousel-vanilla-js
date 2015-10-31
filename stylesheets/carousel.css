@@ -1,27 +1,16 @@
-ul, li, div{
-    margin: 0;
-    padding: 0;
-}
-
-body{
-    background-color: #3c3c3c;
-}
-
-
 .carousel{
     display: flex;
     background-color: #eeeeee;
     margin: 200px auto;
     font-size: 0;
     padding: 5% 1%;
-    justify-content: space-around;
 }
 .carousel .wrapper{
-    width: 90%;
     overflow: hidden;
-    display: inline-block;
 }
 .carousel .slides{
+    margin: 0;
+    padding: 0;
     position: relative;
     left: -33.333%;
     display: flex;
@@ -30,22 +19,20 @@ body{
     justify-content: flex-start;
     transform: translateX(33.3333%);
 }
-.carousel .is-reversing{
+.carousel .reversed{
     transform: translateX(-33.33%);
 }
-.carousel .is-set{
+.carousel .transitioned{
     transform: none;
     transition: transform 0.3s  ease;
 }
 .carousel .slide {
     padding:1% 0.5%;
     flex-shrink: 0;
-    flex-grow: 0;
     flex-basis: 33.33%;
     order: 2;
-    transition: 1s all;
 }
-.carousel  .is-running{
+.carousel  .marker{
     order: 1;
 }
 .carousel .slide img{
@@ -53,13 +40,9 @@ body{
     max-width: 100%;
 }
 .carousel .arrow{
-    display: inline-block;
-    border:none;
-    background: transparent;
     font-size: 50px;
     align-self: center;
 }
 .carousel .arrow:hover{
-    box-shadow: none;
     cursor: pointer;
 }
